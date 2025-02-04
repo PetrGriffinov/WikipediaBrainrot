@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const pagesContainer = document.getElementById('pages');
     let currentPageIndex = 0;
     let isScrolling = false;
+    let startY;
 
     function fetchRandomWikipediaPage() {
         return fetch('https://en.wikipedia.org/api/rest_v1/page/random/summary')
@@ -52,9 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 500); 
     }
 
-    let startY;
     pagesContainer.addEventListener('touchstart', (e) => {
         startY = e.touches[0].clientY;
+    });
+
+    pagesContainer.addEventListener('touchmove', (e) => {
+
+        e.preventDefault();
     });
 
     pagesContainer.addEventListener('touchend', (e) => {
